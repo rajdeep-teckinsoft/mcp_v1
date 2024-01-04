@@ -25,7 +25,9 @@ def init_spi():
 
 def etc_read_reg(address_msb, address_lsb):
     send_buffer = [COMM_SPI_READ, address_msb, address_lsb, DUMMY_BYTE, DUMMY_BYTE, DUMMY_BYTE, DUMMY_BYTE]
-    receive_buffer = spi.xfer2(send_buffer)
+    # receive_buffer = spi.xfer2(send_buffer)
+    spi.writebytes(send_buffer)
+    receive_buffer = spi.readbytes(4)
     return receive_buffer
 
 
